@@ -1,0 +1,162 @@
+Smart Office Facility Management System - Test Scenarios
+===========================================================
+
+This file contains test scenarios to verify all functionality works as expected.
+Copy and paste these commands into the running application to test.
+
+=== POSITIVE TEST CASES ===
+
+1. Configure Office with 3 Rooms:
+config room count 3
+Expected: "Office configured with 3 meeting rooms: Room 1, Room 2, Room 3."
+
+2. Set Room 1 Maximum Capacity:
+config room max capacity 1 10
+Expected: "Room 1 maximum capacity set to 10."
+
+3. Book Room 1:
+block room 1 09:00 60
+Expected: "Room 1 booked from 09:00 for 60 minutes."
+
+4. Add Occupants to Room 1 (Occupied):
+add occupant 1 2
+Expected: "Room 1 is now occupied by 2 persons. AC and lights turned on."
+Also expect: [Air Conditioning System] AC turned on for Room 1
+Also expect: [Lighting System] Lights turned on for Room 1
+
+5. Remove Occupants from Room 1:
+add occupant 1 0
+Expected: "Room 1 is now unoccupied. AC and lights turned off."
+Also expect: [Air Conditioning System] AC turned off for Room 1
+Also expect: [Lighting System] Lights turned off for Room 1
+
+6. Cancel Room 1 Booking:
+cancel room 1
+Expected: "Booking for Room 1 cancelled successfully."
+
+7. Check Room Status:
+status 1
+Expected: Room status information
+
+8. Check All Rooms Status:
+status
+Expected: All rooms status summary
+
+=== NEGATIVE TEST CASES ===
+
+9. Try to Book Already Booked Room:
+block room 1 09:00 60
+block room 1 10:00 30
+Expected: "Room 1 is already booked during this time. Cannot book."
+
+10. Try to Cancel Non-Booked Room:
+cancel room 2
+Expected: "Room 2 is not booked. Cannot cancel booking."
+
+11. Insufficient Occupancy:
+add occupant 2 1
+Expected: "Room 2 occupancy insufficient to mark as occupied."
+
+12. Non-existent Room:
+add occupant 4 2
+Expected: "Room 4 does not exist."
+
+13. Invalid Room Number:
+block room A 09:00 60
+Expected: "Invalid room number. Please enter a valid room number."
+
+14. Invalid Capacity:
+config room max capacity 1 -5
+Expected: "Invalid capacity. Please enter a valid positive number."
+
+15. Invalid Time Format:
+block room 1 25:00 60
+Expected: "Invalid time format. Please use HH:mm format (e.g., 09:00)."
+
+16. Invalid Duration:
+block room 1 09:00 -10
+Expected: "Invalid duration. Please enter a valid positive number."
+
+=== AUTO-RELEASE TEST ===
+
+17. Test Auto-Release (requires waiting 5+ minutes):
+block room 1 09:00 60
+(wait 5+ minutes without adding occupants)
+Expected: "Room 1 is now unoccupied. Booking released. AC and lights off."
+
+=== COMMAND HISTORY AND UNDO ===
+
+18. View Command History:
+history
+Expected: List of executed commands
+
+19. Undo Last Command:
+undo
+Expected: Undo message for last successful command
+
+=== HELP AND EXIT ===
+
+20. Show Help:
+help
+Expected: Complete help message with all commands
+
+21. Exit Application:
+exit
+Expected: "Goodbye!" and clean shutdown
+
+=== EDGE CASES ===
+
+22. Configure with Zero Rooms:
+config room count 0
+Expected: "Room count must be positive"
+
+23. Configure with Negative Rooms:
+config room count -1
+Expected: "Room count must be positive"
+
+24. Book Room Before Configuration:
+(Start fresh application)
+block room 1 09:00 60
+Expected: "Office not configured. Please configure rooms first."
+
+25. Maximum Capacity Edge Cases:
+config room count 1
+config room max capacity 1 1000
+add occupant 1 1001
+Expected: Validation error or capacity limit enforcement
+
+=== CONCURRENT OPERATIONS TEST ===
+
+26. Multiple Operations in Sequence:
+config room count 2
+block room 1 09:00 60
+add occupant 1 3
+block room 2 10:00 30
+add occupant 2 2
+status
+cancel room 1
+cancel room 2
+status
+
+Expected: All operations should work correctly in sequence
+
+=== INPUT VALIDATION TESTS ===
+
+27. Empty Commands:
+(press enter without typing)
+Expected: Continue waiting for input
+
+28. Invalid Commands:
+invalid_command
+Expected: "Unknown command: invalid_command. Type 'help' for available commands."
+
+29. Malformed Commands:
+config
+config room
+block room
+add occupant
+Expected: Appropriate error messages for each
+
+30. Special Characters in Input:
+config room count 3!@#
+Expected: "Invalid room count. Please enter a valid positive number."
