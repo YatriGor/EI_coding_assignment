@@ -1,48 +1,48 @@
 # EI Coding Assignment
 
 ## Overview
-This repository contains solutions for two programming exercises designed to demonstrate proficiency in software design patterns, best coding practices, and system design.
+This repository contains the completed solutions for two programming exercises demonstrating proficiency in software design patterns, best coding practices, and system design.
 
 ---
 
 ## Exercise 1: Design Patterns
 
-### Problem Statement
-Develop six different use cases to demonstrate understanding of software design patterns by implementing the same. The use cases are divided as follows:
+### Summary
+Implemented six different use cases demonstrating a strong understanding of software design patterns. The use cases are categorized as follows:
 
 - Two use cases demonstrating two different **behavioral design patterns**.
 - Two use cases demonstrating two different **creational design patterns**.
 - Two use cases demonstrating two different **structural design patterns**.
 
-Each use case showcases practical applications of these design patterns through coding examples.
+Each use case is implemented with practical coding examples showcasing the application of these design patterns.
 
 ---
 
 ## Exercise 2: Smart Office Facility Programming Exercise
 
-### Problem Statement
-Design a console-based application to manage a smart office facility. The system should handle conference room bookings, occupancy detection, and automate control of air conditioning and lighting based on room occupancy. This exercise evaluates the ability to implement best coding practices, design patterns, and create an efficient, maintainable, and scalable solution.
+### Summary
+Developed a console-based application to manage a smart office facility. The system handles conference room bookings, occupancy detection, and automates control of air conditioning and lighting based on room occupancy. The solution follows best coding practices, design patterns, and is efficient, maintainable, and scalable.
 
-### Functional Requirements
+### Functionalities Implemented
 
-#### Mandatory Requirements
-1. Configure the office facility by specifying the number of meeting rooms.
-2. Book and cancel bookings for conference rooms.
-3. Detect occupancy using sensors that register when at least two people enter a room.
-4. Automatically release bookings for unoccupied rooms if not occupied within 5 minutes.
-5. Turn off air conditioning and lights if the room is not occupied.
+#### Mandatory Features
+1. Configured the office facility by specifying the number of meeting rooms.
+2. Enabled booking and cancellation of conference room bookings.
+3. Implemented occupancy detection using sensors that register when at least two people enter a room.
+4. Automatically released bookings for unoccupied rooms if not occupied within 5 minutes.
+5. Automated turning off of air conditioning and lights when rooms are unoccupied.
 
-#### Optional Requirements
-1. Provide a summary of room usage statistics.
-2. Implement user authentication to restrict access to booking and configuration features.
-3. Notify users via email or SMS when their booked room is released automatically.
+#### Optional Features
+1. Provided a summary of room usage statistics.
+2. Implemented user authentication to restrict access to booking and configuration features.
+3. Sent notifications via email or SMS when booked rooms are released automatically.
 
-### Design Patterns Used
-- **Singleton Pattern**: Ensures a single instance of the office configuration and room booking system throughout the application.
+### Design Patterns Applied
+- **Singleton Pattern**: Used to ensure a single instance of the office configuration and room booking system throughout the application.
 - **Observer Pattern**: Sensors and control systems (lights, AC) observe room occupancy status and react accordingly.
-- **Command Pattern**: Handles booking, cancellation, and room status updates through commands, allowing flexible and extendable operations.
+- **Command Pattern**: Booking, cancellation, and room status updates are handled through commands, allowing flexible and extendable operations.
 
-### Possible Inputs and Outputs
+### Sample Inputs and Outputs
 
 #### Positive Cases
 - `Config room count 3`  
@@ -74,7 +74,6 @@ Design a console-based application to manage a smart office facility. The system
 - `Room status 1` (unoccupied for > 5 mins)  
   *Output:* "Room 1 is now unoccupied. Booking released. AC and lights off."
 
-
 ---
 
 ## How to Run
@@ -83,5 +82,5 @@ Instructions to build and run the projects can be found in the respective folder
 ---
 
 ## Author
-Yatri Gor
+Yatri Gor  
 (22BCP176)
